@@ -24,19 +24,20 @@ gallery.insertAdjacentHTML("beforeend", marcup);
 
 gallery.addEventListener("click", onClick);
 function onClick(evt) {
-  console.log(evt);
+  console.log(evt.target);
   evt.preventDefault();
+
+  const instance = basicLightbox.create(`
+      <img src="${evt.target.dataset.source}" width="800" height="600">
+  `);
+  instance.show();
 }
 
-// const instance = basicLightbox.create(`
-//     <img src="assets/images/image.png" width="800" height="600">
-// `);
+document.addEventListener("keydown", onEscape);
+function onEscape(evt) {
+  document.removeEventListener("keydown", onEscape);
+}
 
-// instance.show();
-
-const instance = basicLightbox.create(`
-<img src="${item.preview}" alt="${item.description}">
-`);
-instance.show();
-// // console.log(basicLightbox);
-// console.log(basicLightbox);
+// function closeModal() {
+//   gallery.removeEventListener("click", closeModal);
+// }
