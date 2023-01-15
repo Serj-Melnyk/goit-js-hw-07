@@ -17,14 +17,8 @@ const marcup = galleryItems
   .join("");
 
 gallery.insertAdjacentHTML("beforeend", marcup);
-gallery.addEventListener("click", onClick);
 
-function onClick(evt) {
-  console.log(evt.target);
-  evt.preventDefault();
-
-  const lightbox = new SimpleLightbox(".gallery a", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-}
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
