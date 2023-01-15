@@ -2,7 +2,7 @@ import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
 console.log(galleryItems);
-
+// const document = document.querySelector("");
 const gallery = document.querySelector(".gallery");
 
 const marcup = galleryItems
@@ -27,24 +27,25 @@ gallery.addEventListener("click", onClick);
 function onClick(evt) {
   console.log(evt.target);
   evt.preventDefault();
-  document.addEventListener("keydown", onEscape);
 
   const instance = basicLightbox.create(`
       <img src="${evt.target.dataset.source}" width="800" height="600">
   `);
-  onShow: (instance) => {
-    document.addEventListener("keydown", onEscape);
-  };
-  onClose: (instance) => {
-    document.removeEventListener("keydown", onEscape);
-  };
-
   instance.show();
-  function onEscape() {
+
+  gallery.addEventListener("click", (evt) => {
     if (evt.code === "Escape") {
-      return;
+      // document.removeEventListener("keydown", onEscape);
+      instance.close();
     }
-  }
+  });
+
+  // onShow: (instance) => {
+  //   onEscape;
+  // };
+  // onClose: (instance) => {
+  //   document.removeEventListener("keydown", onEscape);
+  // };
 
   // instance.close(() => closeModal());
   // instance.close(() => console.log("lightbox not visible anymore"));
@@ -54,6 +55,16 @@ function onClick(evt) {
   // }
 }
 
+// document.addEventListener("keydown", onEscape);
+
+// function onEscape(evt) {
+//   document.addEventListener("keydown", onEscape);
+//   console.log(evt);
+
+// function onEscape(evt) {}
+
+// instance.show();
+// }
 //............................................
 
 // const onGalleryImgClick = (event) => {
